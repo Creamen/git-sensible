@@ -36,9 +36,9 @@ When working in a group, local repos become outdated often, and have to pull dow
 
 Using a branching model will amplify the usefullness of branching, allowing each dev to be more creative with creating code and designing changes without stress.
 
-However, there are a variety of models any team can use, and it's important to choose the right one for the group. Here are a few.
+However, there are a variety of models any team can use, and it's important to choose the right one for the group. 
 
-*Note – each model defines terms (master, release, etc) differently, so know the context.* With that said, these are constant throughout:
+*Note* – each model defines terms (master, release, etc) differently, so know the context. These are universal:
 
 * *Production* is the currently deployed source code being used by the end-user. 
 * *Feature* is a branch that works on a single implementation of a new product feature, such as `Mobile Support` or `Color Themes`.
@@ -60,10 +60,28 @@ Develop      -------------------------
 Feature           -----
 ```
 
-* *Production* is *master*
-* *Release* is a branch off *develop*, which is given final QA, no new features, and is tagged with versioning. 
+* *Production* is *master*.
+* *Release* is a branch off *develop*, which is given final QA, no new features, and is tagged with versioning.
 * *Develop* is a branch off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
 * *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
+* *Hotfix* is a branch off *master*, and can be merged into *master* and *develop*.
+
+Realistically, there will likely be ongoing features and a release at work.
+
+```
+Release                        ----
+                              /
+Develop      -----------------
+                 \     /      \
+Feature           -----        ---- feature-mobile
+```
+
+In the event that *develop* is updated, such as through a QA commit or *hotfix* merge, its child branches can be updated with `rebase`.
+
+```
+$ git checkout feature-mobile
+$ git rebase develop
+```
 
 #### Github-flow
 
@@ -119,7 +137,7 @@ s 9n28e0a Impl. Spanish lanuage support
 	
 - Keep git profiles synchronized across your dists
 
-    ```git
+    ```
     $ git config --global user.name "First Last"
     $ git config --global user.name "public-email@gmail.com"
     ```
