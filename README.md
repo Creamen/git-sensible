@@ -27,7 +27,7 @@ Here are a few that should help you.
 ### Use 'git pull --rebase' when getting up to date
 
 ```git
-git pull --rebase
+$ git pull --rebase
 ```
 
 When working in a group, local repos become outdated often, and have to pull down changes made by other devs. `git pull` is made just for this, but by default **causes an extra merge commit just to update the local repo.** This isn't pretty, and gets even nastier with dozens of devs. Use `git pull --rebase` to cleanly update the repo with what's going on.
@@ -76,8 +76,8 @@ Feature           -----
 Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so it's important that each dev has a visual of the branch flow.
 
 ```
-git config --global alias.lol log --graph --decorate --oneline -20
-git config --global alias.lola log --graph --decorate --oneline --all -20
+$ git config --global alias.lol log --graph --decorate --oneline -20
+$ git config --global alias.lola log --graph --decorate --oneline --all -20
 ```
 
 To modify local aliases, head over to `~/.gitconfig` 
@@ -86,7 +86,11 @@ To modify local aliases, head over to `~/.gitconfig`
 
 Rebasing is a fantastic tool enabling devs to make repo histories more readable and streamlined. If you haven't already, set up git to point to your editor.
 
-`git rebase -i HEAD~1` will open an editor to *interactively* work with the `HEAD` and its parent.
+```
+$ git rebase -i HEAD~1
+``` 
+
+Opens an editor to *interactively* work with the `HEAD` and its parent.
 
 ```
 pick f7f3f6d changed my name a bit
@@ -116,8 +120,8 @@ s 9n28e0a Impl. Spanish lanuage support
 - Keep git profiles synchronized across your dists
 
     ```git
-    git config --global user.name "First Last"
-    git config --global user.name "public-email@gmail.com"
+    $ git config --global user.name "First Last"
+    $ git config --global user.name "public-email@gmail.com"
     ```
     
     When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
