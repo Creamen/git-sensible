@@ -10,9 +10,9 @@ To best harden these concepts within your mind, exercise them [prodecurally](htt
 * [Useguide](#useguide)
 * [Styleguide](#styleguide)
 
-# Useguide
+## Useguide
 
-## Avoid straying from conventions
+### Avoid straying from conventions
 
 It is difficult to know when making a decision about programming is better or worse for yourself. For example, some might find it difficult going about styling their code or setting up their work environment for the project.
 
@@ -24,7 +24,7 @@ With that said, it is up to your group and the community as a whole to use what 
 
 Here are a few that should help you.
 
-## Use 'git pull --rebase' when getting up to date
+### Use 'git pull --rebase' when getting up to date
 
 ```git
 git pull --rebase
@@ -32,7 +32,7 @@ git pull --rebase
 
 When working in a group, local repos become outdated often, and have to pull down changes made by other devs. `git pull` is made just for this, but by default **causes an extra merge commit just to update the local repo.** This isn't pretty, and gets even nastier with dozens of devs. Use `git pull --rebase` to cleanly update the repo with what's going on.
 
-## Understand git branching models
+### Understand git branching models
 
 Using a branching model will amplify the usefullness of branching, allowing each dev to be more creative with creating code and designing changes without stress.
 
@@ -43,7 +43,7 @@ However, there are a variety of models any team can use, and it's important to c
 * *Production* is the currently deployed source code being used by the end-user. 
 * *Feature* is a branch that works on a single implementation of a new product feature, such as `Mobile Support` or `Color Themes`.
 
-### Gitflow
+#### Gitflow
 
 While not having an official name, 'gitflow' is the most popular branching model amongst Github developers, while also being the most complicated.
 
@@ -65,13 +65,13 @@ Feature           -----
 * *Develop* is a branch off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
 * *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
 
-### Github-flow
+#### Github-flow
 
 
 
 
 
-## Visualize branch flow
+### Visualize branch flow
 
 Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so it's important that each dev has a visual of the branch flow.
 
@@ -82,7 +82,7 @@ git config --global alias.lola log --graph --decorate --oneline --all -20
 
 To modify local aliases, head over to `~/.gitconfig` 
 
-## Rebase commits for readability
+### Rebase commits for readability
 
 Rebasing is a fantastic tool enabling devs to make repo histories more readable and streamlined. If you haven't already, set up git to point to your editor.
 
@@ -111,7 +111,7 @@ s 9n28e0a Impl. Spanish lanuage support
 
 *Be diligent when rebasing content that has already been pushed, as it creates a new commit and hash, obscuring any issue or comment that referenced the old hash.*
 
-## Properly setup
+### Properly setup
 	
 - Keep git profiles synchronized across your dists
 
@@ -130,7 +130,7 @@ s 9n28e0a Impl. Spanish lanuage support
 	
 	They are *disposable*. Leaving them up to human error can open an opportunity for an attacker to do monumental damage. Keep them close. Recreate them if you have any doubt. 
 
-## Write good commit messages
+### Write good commit messages
 
 >As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.  
 >– *Git Commit Good Practice*, OpenStack
@@ -145,7 +145,7 @@ Here is a template that I've conformed to over a few months of commiting:
 
 See an example below.
 
-### Fixing bugs and closing issues
+#### Fixing bugs and closing issues
 
 ```
 [Subject line]
@@ -185,16 +185,16 @@ processed, it is never again checked for nested classes, etc.
 Issue: SPR-8955
 ```
 
-### Keep the subject line under 50 chars, and the body under 80
+#### Keep the subject line under 50 chars, and the body under 80
 This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths for programming.
 
 For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=80` to colorize the 80th column in the document, and `set columns` a bit wider. I use 86. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
 
-### Line-break the commit body
+#### Line-break the commit body
 
 Add a line break after your desired amount of columns. This improves legibility of the commit message, as it standardizes the rendering of the commit throughout GitHub and the command line. Just like spaces over tabs. **darts out door*\*
 
-### Use a present tense imperative in the subject line
+#### Use a present tense imperative in the subject line
 
 Good:
 
@@ -206,13 +206,13 @@ Bad:
 * `Websites now link to homepage in top left corners`
 * `Improve UX`
 
-### Don't blend syntax with English
+#### Don't blend syntax with English
 While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *Was that latex? Or was that python latex...?*
 
 Good: `Propagate cc to vim configuration files`
 
 Bad: `Propagate cc to [_.]vimrc`
 
-# Styleguide
+## Styleguide
 
 As a rule of thumb, prioritize the readability of using code conventions. It is ironic attempting to condense code that will be read by programmers. Condensers do it in a single click.
