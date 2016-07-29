@@ -36,12 +36,30 @@ When working in a group, local repos become outdated often, and have to pull dow
 
 Using a branching model will amplify the usefullness of branching, allowing each dev to be more creative with creating code and designing changes without stress.
 
-However, there are a variety of models any team can use, and it's important to choose the right one for the group. 
+However, teams can use a variety of models, and it's important to choose the right one for the group. 
 
 *Note* – each model defines terms (master, release, etc) differently, so know the context. These are universal:
 
-* *Production* is the currently deployed source code being used by the end-user. 
+* *Production* is one branch with the currently deployed source code being used by the end-user. Normally, everything funnels into *production* one way or another.
 * *Feature* is a branch that works on a single implementation of a new product feature, such as `Mobile Support` or `Color Themes`.
+
+#### Github-flow
+
+> If your code is having only one version in production at all times (i.e. web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. Once developer finish a feature or finish a bugfix its immediately promoted to production version.
+> – Gayan Pathirage via Stack Overflow
+
+```
+                     hotfix-sqli
+                        -----
+                       /     \
+ Master      ---------------------
+                 \         /      \
+                  ---------        --- release-2.0
+                 feat-mobile
+```
+
+* *Master* is *production*
+* *Features* branch off master
 
 #### Gitflow
 
@@ -66,7 +84,10 @@ Feature           -----
 * *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
 * *Hotfix* is a branch off *master*, and can be merged into *master* and *develop*.
 
-Realistically, there will likely be ongoing features and a release at work.
+
+### Keep branches up to date
+
+Realistically, there will likely be ongoing features and a release at work for any repository.
 
 ```
 Release                        ----
@@ -83,10 +104,16 @@ $ git checkout feature-mobile
 $ git rebase develop
 ```
 
-#### Github-flow
+### Delete a branch
+ 
+Once finished with a branch (merged into parent), they can be deleted to keep the repository nice and clean.
 
-
-
+```
+$ git checkout develop
+$ git branch -D feature-mobile
+$ git push origin --delete feature-mobile
+$ git push
+```
 
 
 ### Visualize branch flow
