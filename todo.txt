@@ -1,0 +1,3 @@
+TODO July 28 Move the rebase topic to the top of Useguide.
+     Because it's that important.
+TODO July 28 Change subject lines to h2, and change 'Styleguide' to use h1
