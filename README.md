@@ -1,11 +1,11 @@
 # guide 
 A central reference to streamline and homoginize a team's workflow. 
 
-There are many, many ways teams can fail when developing source code, from the management of the team down to the typing of the keys. Hopefully this guide will help improve your programming experience, and make code more sustainable.
-
 This isn't exhaustive. Be proactive in researching and asking others about proper workflow.
 
-With all this said, don't expect to know these methods off the bat. Git is very much an *inductive* language, which means, rather informally, *learn by doing*. You could say this is a compilation of everything we've had to Google, and has improved our workflow. Use what works for you.
+Also, don't expect to know these conventions off the bat. Git is very much an *inductive* language, which means, rather informally, *learn by observing specific scenarios*. Doing this [effectively](https://github.com/airbnb/javascript#objects--no-new) can convey concepts much quicker than teaching it [deductively](https://en.wikipedia.org/wiki/Deductive_reasoning).
+
+To best harden these concepts within your mind, exercise them [prodecurally](https://en.wikipedia.org/wiki/Procedural_knowledge). Hopefully these topic sentences are relevant enough that they become commonplace within your workflow.
 
 * [Useguide](#useguide)
 * [Styleguide](#styleguide)
@@ -16,7 +16,7 @@ With all this said, don't expect to know these methods off the bat. Git is very 
 
 It is difficult to know when making a decision about programming is better or worse for yourself. For example, some might find it difficult going about styling their code or setting up their work environment for the project.
 
-In order to make this easier for the user, they should consider how other developers and programmers will view their code and workflow. In one question – **what will others expect out of your source code?** If it uses strange filetrees, capitalization, or indentation, other developers will be forced to think harder about your code, leading to more fatigue and poor performance.
+In order to make this easier for the user, the user should consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code?** If it uses strange filetrees, capitalization, or indentation, other developers will be forced to think harder about your code, leading to more fatigue and poor performance.
 
 Synchronizing and conforming to conventions is a self-fulfilling prophecy – the more programmers use conventions the more streamlined each project environment becomes.
 
@@ -24,7 +24,7 @@ With that said, it is up to your group and the community as a whole to use what 
 
 Here are a few that should help you.
 
-## Use --rebase when getting up to date 
+## Use 'git pull --rebase' when getting up to date
 
 ```git
 git pull --rebase
@@ -34,7 +34,42 @@ When working in a group, local repos become outdated often, and have to pull dow
 
 ## Understand git branching models
 
-...
+Using a branching model will amplify the usefullness of branching, allowing each dev to be more creative with creating code and designing changes without stress.
+
+However, there are a variety of models any team can use, and it's important to choose the right one for the group. Here are a few.
+
+*Note – each model defines terms (master, release, etc) differently, so know the context.* With that said, these are constant throughout:
+
+* *Production* is the currently deployed source code being used by the end-user. 
+* *Feature* is a branch that works on a single implementation of a new product feature, such as `Mobile Support` or `Color Themes`.
+
+### Gitflow
+
+While not having an official name, 'gitflow' is the most popular branching model amongst Github developers, while also being the most complicated.
+
+```
+Hotfix        -----
+             /     \
+Master  ------------------------------
+         \                          /
+          \                        /
+Release    \                  -----
+            \                /     \
+Develop      -------------------------
+                 \     /
+Feature           -----
+```
+
+* *Production* is *master*
+* *Release* is a branch off *develop*, which is given final QA, no new features, and is tagged with versioning. 
+* *Develop* is a branch off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
+* *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
+
+### Github-flow
+
+
+
+
 
 ## Visualize branch flow
 
@@ -151,7 +186,7 @@ Issue: SPR-8955
 ```
 
 ### Keep the subject line under 50 chars, and the body under 80
-This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths.
+This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths for programming.
 
 For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=80` to colorize the 80th column in the document, and `set columns` a bit wider. I use 86. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
 

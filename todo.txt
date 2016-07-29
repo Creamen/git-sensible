@@ -14,6 +14,9 @@ TODO July 29 Nitpicks
              `shortlog`, `log --oneline`
 
              add more examples!!
+
+             'write good commit messages' isn't all too fulfilling. make
+             sure is has sustenance
 TODO July 29 Add Git Flow to the top of usage. It's not obvious to use git flow,
              so make sure that Git Flow is established as the norm branching
              model.
