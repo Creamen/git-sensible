@@ -10,22 +10,55 @@ With all this said, don't expect to know these methods off the bat. Git is very 
 * [Useguide](#useguide)
 * [Styleguide](#styleguide)
 
-----------
+# Useguide
 
-## Useguide
+## Avoid straying from conventions
 
-### Rebase commits for readability
+It is difficult to know when making a decision about programming is better or worse for yourself. For example, some might find it difficult going about styling their code or setting up their work environment for the project.
 
-Rebasing is a fantastic tool enabling devs to make the history more readable and streamlined
+In order to make this easier for the user, they should consider how other developers and programmers will view their code and workflow. In one question – **what will others expect out of your source code?** If it uses strange filetrees, capitalization, or indentation, other developers will be forced to think harder about your code, leading to more fatigue and poor performance.
 
-`$ git rebase -i HEAD~1` will open an editor to *interactively* work with commits from the `HEAD` to its second parent.
+Synchronizing and conforming to conventions is a self-fulfilling prophecy – the more programmers use conventions the more streamlined each project environment becomes.
+
+With that said, it is up to your group and the community as a whole to use what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
+
+Here are a few that should help you.
+
+## Use --rebase when getting up to date 
+
+```git
+git pull --rebase
+```
+
+When working in a group, local repos become outdated often, and have to pull down changes made by other devs. `git pull` is made just for this, but by default **causes an extra merge commit just to update the local repo.** This isn't pretty, and gets even nastier with dozens of devs. Use `git pull --rebase` to cleanly update the repo with what's going on.
+
+## Understand git branching models
+
+...
+
+## Visualize branch flow
+
+Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so it's important that each dev has a visual of the branch flow.
+
+```
+git config --global alias.lol log --graph --decorate --oneline -20
+git config --global alias.lola log --graph --decorate --oneline --all -20
+```
+
+To modify local aliases, head over to `~/.gitconfig` 
+
+## Rebase commits for readability
+
+Rebasing is a fantastic tool enabling devs to make repo histories more readable and streamlined. If you haven't already, set up git to point to your editor.
+
+`git rebase -i HEAD~1` will open an editor to *interactively* work with the `HEAD` and its parent.
 
 ```
 pick f7f3f6d changed my name a bit
 r 310154e updated README formatting and added blame
 ```
 
-Opens an editor to *reword* 310154e's commit message. Useful when accidentally commiting with typos or lackluster language.
+Opens an editor to *reword* the commit message. Useful when accidentally commiting with typos or lackluster language.
 
 ```
 pick 4e64052 Revise animations to use CSS in homepage
@@ -39,51 +72,30 @@ pick 6h49f6s Impl. French language support
 s 9n28e0a Impl. Spanish lanuage support
 ```
 
-Squashes the commit into its parent, improving the readbility of commit history. Subsequently opens an editor to modify their commit messages, which have also been combined.
+*Squash* the commit into its parent, improving the readability of the commit history. Subsequently opens an editor to modify their commit messages, which have also been combined.
 
-*Be diligent when rebasing content that has already been pushed, as it creates a new commit and hash, obscuring any issue or comment that referenced that hash.*
+*Be diligent when rebasing content that has already been pushed, as it creates a new commit and hash, obscuring any issue or comment that referenced the old hash.*
 
-### Use --rebase when getting up to date 
-
-```git
-git pull --rebase
-```
-
-When working in a group, local repos become outdated often, and have to pull down changes made by other devs. `git pull` is made just for this, but by default **causes an extra merge commit just to update the local repo.** This isn't pretty, and gets even nastier with dozens of devs. So, use `git pull --rebase` to cleanly update the repo with what's going on.
-
-### Set up a new computer
-
-1. Sync your profile
+## Properly setup
+	
+- Keep git profiles synchronized across your dists
 
     ```git
     git config --global user.name "First Last"
     git config --global user.name "public-email@gmail.com"
     ```
     
-    When done correctly, `blame` and `shortlog` will be attributed to everyone correctly. Turn on 2-Factor authentication for that email, as it will be publicly accessible.
-
-2. Generate an encryption key
-
-    Github best [explains how](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/).
+    When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
     
-    After the key is generated and added to your personal account, GitHub will accept the authentication from that computer, and you can work on your groups as normal.
-    
-    If at any time your keys are compromised (commonly done in someone's /dotfiles repo), just delete them from your account.
+- Turn on 2-Factor authentication for your emails, including your GitHub account
 
-### Visualize branch flow
+	GitHub's hosted information is very accessible. In the past, many accounts have been compromised through [brute force](https://github.com/blog/1698-weak-passwords-brute-forced) and even [reused passwords](https://github.com/blog/2190-github-security-update-reused-password-attack) that were stolen from other websites *last month*. 2-Factor is an easy way to sleep soundly at night.
 
-Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so it's important that each dev has a visual of the branch flow.
+- Never, ever move around your authentication keys
+	
+	They are *disposable*. Leaving them up to human error can open an opportunity for an attacker to do monumental damage. Keep them close. Recreate them if you have any doubt. 
 
-```
-git config --global alias.lol log --graph --decorate --oneline -20
-git config --global alias.lola log --graph --decorate --oneline --all -20
-```
-
-To modify local aliases, head over to `~/.gitconfig` 
-
-### Write good commit messages
-
-This is the subject of hundreds of blog posts – this one is nothing special. *Tim Pope* even has his own rundown of commit messages.
+## Write good commit messages
 
 >As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.  
 >– *Git Commit Good Practice*, OpenStack
@@ -96,12 +108,14 @@ Here is a template that I've conformed to over a few months of commiting:
 [Expanded context and explanation]
 ```
 
-#### Fixing bugs and closing issues
+See an example below.
+
+### Fixing bugs and closing issues
 
 ```
-[Title]
+[Subject line]
 
-Previously, [what was happening]
+Originally, [what was happening]
 
 [Back-end explanation of bug]
 
@@ -109,6 +123,8 @@ Previously, [what was happening]
 
 Closes #XX
 ```
+
+Issues can be closed directly using a [keyword](https://help.github.com/articles/closing-issues-via-commit-messages/).
 
 Here's a great example:
 
@@ -134,23 +150,33 @@ processed, it is never again checked for nested classes, etc.
 Issue: SPR-8955
 ```
 
-#### Keep the subject line under 50 chars, and the body under 80
-This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible text wrap for reading. 72 and 80 are popular columns widths.
+### Keep the subject line under 50 chars, and the body under 80
+This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths.
 
-For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=80` to colorize the 80th column, and `set columns` a bit wider. I use 86. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
+For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=80` to colorize the 80th column in the document, and `set columns` a bit wider. I use 86. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
 
-#### Use a present tense imperative in the subject line
-`Fix` – not `Fixes` or `Fixed`.  Commits are commands to change code, not changed code.
+### Line-break the commit body
 
-#### Line-break the commit body
+Add a line break after your desired amount of columns. This improves legibility of the commit message, as it standardizes the rendering of the commit throughout GitHub and the command line. Just like spaces over tabs. **darts out door*\*
 
-Add a line break after your desired amount of columns. This improves legibility of the commit message, as it standardizes the rendering of the commit across GitHub and the command line. Just like spaces over tabs. **darts out door*\*
+### Use a present tense imperative in the subject line
 
-#### Don't blend syntax with English
-Moron.
+Good:
 
-----------
+* `Implement homepage link in top left corner of all sites`
 
+Bad:
+
+* `Implemented homepage link in corner`
+* `Websites now link to homepage in top left corners`
+* `Improve UX`
+
+### Don't blend syntax with English
+While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *Was that latex? Or was that python latex...?*
+
+Good: `Propagate cc to vim configuration files`
+
+Bad: `Propagate cc to [_.]vimrc`
 
 # Styleguide
 

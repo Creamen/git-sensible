@@ -1,3 +1,26 @@
+TODO July 29 Nitpicks
+             "and streamlined."
+             HEAD~2 not HEAD~1
+             work with HEAD, HEAD~1, and HEAD~2 (second parent)
+             reword the commit message
+             *squash* the commit
+
+             ...tim pope...nonetheless, it's vital to recite the importance of
+             good commit messages.
+             nah just get rid of the intro entirely.
+
+             here is a general template...
+             [title] to [subject line]
+             `shortlog`, `log --oneline`
+
+             add more examples!!
+TODO July 29 Add Git Flow to the top of usage. It's not obvious to use git flow,
+             so make sure that Git Flow is established as the norm branching
+             model.
+
+             Then move up 'Visualize branch Flow' with it
+
+             Research gitk
 TODO July 28 Move the rebase topic to the top of Useguide.
-     Because it's that important.
+             Because it's that important.
 TODO July 28 Change subject lines to h2, and change 'Styleguide' to use h1
