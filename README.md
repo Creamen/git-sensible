@@ -1,16 +1,36 @@
 # guide 
+
 A central reference to streamline and homoginize a team's workflow. 
 
-* [Useguide](#useguide)
-* [Styleguide](#styleguide)
+- [Useguide](#useguide)
+	- [Avoid straying from conventions](#avoid-straying-from-conventions)
+	- [Use 'git pull --rebase' when getting up to date](#use-git-pull---rebase-when-getting-up-to-date)
+	- [Understand git branching models](#understand-git-branching-models)
+		- [Github-flow](#github-flow)
+		- [Gitflow](#gitflow)
+		- [Trunk](#trunk)
+	- [Keep branches up to date](#keep-branches-up-to-date)
+	- [Delete a branch](#delete-a-branch)
+	- [Visualize branch flow](#visualize-branch-flow)
+	- [Rebase commits for readability](#rebase-commits-for-readability)
+	- [Properly setup](#properly-setup)
+	- [Write good commit messages](#write-good-commit-messages)
+		- [Template of a good commit message](#template-of-a-good-commit-message)
+		- [Fixing bugs and closing issues](#fixing-bugs-and-closing-issues)
+		- [Keep the subject line under 50 chars, and the body under 80](#keep-the-subject-line-under-50-chars-and-the-body-under-80)
+		- [Line-break the commit body](#line-break-the-commit-body)
+		- [Use a present tense imperative in the subject line](#use-a-present-tense-imperative-in-the-subject-line)
+		- [Don't blend syntax with English](#dont-blend-syntax-with-english)
+- [Styleguide](#styleguide)
 
 ## Useguide
 
+Use these conventions to improve your workflow and dev experience.
 ### Avoid straying from conventions
 
-Always consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code and workflow?** If any developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and poor performance.
+Always consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and poor performance.
 
-Synchronizing and conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined, and collaboration becomes easier.
+Synchronizing and conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
 
 With that said, conforming to conventions doesn't change what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
 
@@ -45,13 +65,13 @@ Develop      -------------------------
 Feature           -----
 ```
 
-* *Master* hosts the **production** – the code currently being used by the end-user.
-* *Release* branches off *develop*, which is given final QA, no new features, and is tagged with versioning.
-* *Develop* branches off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
-* *Feature* branches off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
-* *Hotfix* branches off *master*, and can be merged into *master* and *develop*.
+- *Master* hosts the **production** – the code currently being used by the end-user.
+- *Release* branches off *develop*, which is given final QA, no new features, and is tagged with versioning.
+- *Develop* branches off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
+- *Feature* branches off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
+- *Hotfix* branches off *master*, and can be merged into *master* and *develop*.
 
-In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versioning and segregation of code.
+In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versioning and segregation of code.
 
 #### Github-flow
 
@@ -68,15 +88,15 @@ In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versi
              feat-mobile
 ```
 
-* *Master* hosts production.
-* Any *features*, *hotfixes*, and *releases* branch off *master*.
+- *Master* hosts production.
+- Any *features*, *hotfixes*, and *releases* branch off *master*.
 
 The appeal of Github-flow is simple:
 
-* Provide an easy to use branch model for **continuous integration (CI)**.
-* Have each dev work with the same parent branch of code
-* Much, much less likelihood that any codebase will diverge and cause conflicts.
-* Simplify the codebase behind pull requests
+- Provide an easy to use branch model for **continuous integration (CI)**.
+- Have each dev work with the same parent branch of code
+- Much, much less likelihood that any codebase will diverge and cause conflicts.
+- Simplify the codebase behind pull requests
 
 #### Trunk
 
@@ -91,13 +111,14 @@ Master  ----------------------------------------
 
 Trunk is very unique in its aspects –
 
-* *Master* is **not** production, and instead is the universal development environment.
-* Developers exclusively commit to *master*.
-* Each commit is production-ready. Ergo, no commit ever breaks the build.
-* The model employs **release engineers**, who have specific rights –
-    * Branch off *release* branches, which are then sent to *production*
-    * **Cherry pick** commits from *master*. Useful for bugs.
-* **Multiple productions** can be simultaneously hosted, debugged, and developed on.
+- *Master* is **not** production, and instead is the universal development environment.
+- *Master* is colloquially known as the 'trunk.'
+- Developers exclusively commit to *master*.
+- Each commit is production-ready. Ergo, no commit ever breaks the build.
+- The model employs **release engineers**, who have specific rights –
+    - Branch off *release* branches, which are then sent to *production*
+    - **Cherry pick** commits from *master*. Useful for bugs.
+- **Multiple productions** can be simultaneously hosted, debugged, and developed on.
 
 Knowing these three models in mind, you can effectively use what works best for your project and team.
 
@@ -268,16 +289,16 @@ Add a line break after your desired amount of columns. This improves legibility 
 
 Good:
 
-* `Implement homepage link in top left corner of all sites`
+- `Implement homepage link in top left corner of all sites`
 
 Bad:
 
-* `Implemented homepage link in corner`
-* `Websites now link to homepage in top left corners`
-* `Improve UX`
+- `Implemented homepage link in corner`
+- `Websites now link to homepage in top left corners`
+- `Improve UX`
 
 #### Don't blend syntax with English
-While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *Was that latex? Or was that python latex...?*
+While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *'Was that regex? Or was that python regex...?'*
 
 Good: `Propagate cc to vim configuration files`
 
@@ -285,4 +306,4 @@ Bad: `Propagate cc to [_.]vimrc`
 
 ## Styleguide
 
-As a rule of thumb, prioritize the readability of using code conventions. It is ironic attempting to condense code that will be read by programmers. Condensers do it in a single click.
+As a rule of thumb, prioritize the readability of using code conventions. It is ironic attempting to condense code that will be read by programmers.
