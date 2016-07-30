@@ -8,15 +8,11 @@ A central reference to streamline and homoginize a team's workflow.
 
 ### Avoid straying from conventions
 
-It is difficult to know when making a decision about programming is better or worse for yourself. For example, some might find it difficult going about styling their code or setting up their work environment for the project.
+Always consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code and workflow?** If any developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and poor performance.
 
-In order to make this easier for the user, the user should consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code?** If it uses strange filetrees, capitalization, or indentation, other developers will be forced to think harder about your code, leading to more fatigue and poor performance.
+Synchronizing and conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined, and collaboration becomes easier.
 
-Synchronizing and conforming to conventions is a self-fulfilling prophecy – the more programmers use conventions the more streamlined each project environment becomes.
-
-With that said, it is up to your group and the community as a whole to use what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
-
-Here are a few that should help you.
+With that said, conforming to conventions doesn't change what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
 
 ### Use 'git pull --rebase' when getting up to date
 
@@ -59,8 +55,8 @@ In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versi
 
 #### Github-flow
 
-> If your code is having only one version in production at all times (i.e. web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. Once developer finish a feature or finish a bugfix its immediately promoted to production version.
-> – Gayan Pathirage via Stack Overflow
+>If your code is having only one version in production at all times (i.e. web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. Once developer finish a feature or finish a bugfix its immediately promoted to production version.
+>– Gayan Pathirage via Stack Overflow
 
 ```
                  hotfix-sqli
@@ -79,18 +75,18 @@ The appeal of Github-flow is simple:
 
 * Provide an easy to use branch model for **continuous integration (CI)**.
 * Have each dev work with the same parent branch of code
-    - Enable easy collaboration amongst branches.
 * Much, much less likelihood that any codebase will diverge and cause conflicts.
+* Simplify the codebase behind pull requests
 
 #### Trunk
 
 Trunk-based development is another model focused on **continuous integration (CI)** that has been around for many years. Facebook uses this model, pushing new, production-ready code every day.
 
 ```
-             2.x   2.1.x            3.x
-Release      --------x-----         -------
-            /                      /
-Master   --------------------------------------
+              2.x   2.1.x            3.x
+Release       --------x-----         -------
+             /                      /
+Master  ----------------------------------------
 ```
 
 Trunk is very unique in its aspects –
@@ -99,8 +95,8 @@ Trunk is very unique in its aspects –
 * Developers exclusively commit to *master*.
 * Each commit is production-ready. Ergo, no commit ever breaks the build.
 * The model employs **release engineers**, who have specific rights –
-	* Branch off *release* branches, which are then sent to *production*
-	* **Cherry pick** commits from *master*. Useful for bugs.
+    * Branch off *release* branches, which are then sent to *production*
+    * **Cherry pick** commits from *master*. Useful for bugs.
 * **Multiple productions** can be simultaneously hosted, debugged, and developed on.
 
 Knowing these three models in mind, you can effectively use what works best for your project and team.
@@ -109,15 +105,13 @@ Knowing these three models in mind, you can effectively use what works best for 
 
 Realistically, there will be ongoing features and a release at work for any repository.
 
-Say you're working on *feature-mobile*, and *develop* is now updated with a commit from QA and a merge from *hotfix*.
-
 ```
-Develop      ------------------x---x
-                 \     /    \
-Feature           -----      ---- feature-mobile
+Develop  ------------------x---x
+             \     /    \
+Feature       -----      ---- feature-mobile
 ```
 
-To update the branch,
+To update *feature-mobile*,
 
 ```
 $ git checkout feature-mobile
@@ -127,9 +121,9 @@ $ git rebase develop
 *Feature-mobile* is now at the tip of *develop*.
 
 ```
-Develop      ------------------x---x
-                 \     /            \
-Feature           -----              ---- feature-mobile
+Develop  ------------------x---x
+             \     /            \
+Feature       -----              ---- feature-mobile
 ```
 
 ### Delete a branch
@@ -145,7 +139,7 @@ $ git push
 
 ### Visualize branch flow
 
-Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so each dev should have a visual of the branch flow.
+Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so each dev should have a visual of the branch flow. `lol` and `lola` are popular ways to visualize the current branch tree and 'all' branches.
 
 ```
 $ git config --global alias.lol log --graph --decorate --oneline -20
@@ -159,7 +153,7 @@ To modify local aliases, head over to `~/.gitconfig`
 Rebasing is a fantastic tool enabling devs to make repo histories more readable and streamlined. If you haven't already, set up git to point to your editor.
 
 ```
-$ git rebase -i HEAD~1
+$ git rebase -i HEAD~2
 ``` 
 
 Opens an editor to *interactively* work with the `HEAD` and its parent.
@@ -187,7 +181,7 @@ s 9n28e0a Impl. Spanish lanuage support
 
 *Be diligent when rebasing content that has already been pushed, as it creates a new commit and hash, obscuring any issue or comment that referenced the old hash.*
 
-### Properly setup
+### Properly setup a computer
 	
 - Keep git profiles synchronized across your dists
 
