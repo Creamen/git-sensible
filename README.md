@@ -38,28 +38,10 @@ Using a branching model will amplify the usefullness of branching, allowing each
 
 However, teams can use a variety of models, and it's important to choose the right one for the group. 
 
-*Note* – each model defines terms (master, release, etc) differently, so know the context. These are universal:
+*Note* – each model interprets terms (master, release, etc) differently, so know the context. These are universal:
 
 * *Production* is one branch with the currently deployed source code being used by the end-user. Normally, everything funnels into *production* one way or another.
 * *Feature* is a branch that works on a single implementation of a new product feature, such as `Mobile Support` or `Color Themes`.
-
-#### Github-flow
-
-> If your code is having only one version in production at all times (i.e. web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. Once developer finish a feature or finish a bugfix its immediately promoted to production version.
-> – Gayan Pathirage via Stack Overflow
-
-```
-                     hotfix-sqli
-                        -----
-                       /     \
- Master      ---------------------
-                 \         /      \
-                  ---------        --- release-2.0
-                 feat-mobile
-```
-
-* *Master* is *production*
-* *Features* branch off master
 
 #### Gitflow
 
@@ -84,10 +66,56 @@ Feature           -----
 * *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
 * *Hotfix* is a branch off *master*, and can be merged into *master* and *develop*.
 
+In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versioning and segregation of code.
+
+#### Github-flow
+
+> If your code is having only one version in production at all times (i.e. web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. Once developer finish a feature or finish a bugfix its immediately promoted to production version.
+> – Gayan Pathirage via Stack Overflow
+
+```
+                 hotfix-sqli
+                    -----
+                   /     \
+ Master  ----------------------------
+             \         /             \
+              ---------               --- release-2.0
+             feat-mobile
+```
+
+* *Master* is *production*
+* Any *features*, *hotfixes*, and *releases* branch off *master*.
+
+The appeal of Github-flow is simple:
+
+- Provide an easy to use branch model for **continuous integration (CI)**.
+- Each developer is working with the same parent branch of code, allowing for easy collaboration between groups of programmers.
+- Much, much less likelihood that codebases will diverge and cause conflicts.
+
+#### Trunk
+
+Trunk-based development is another style of **continuous integration (CI)** that has been around for many years. Facebook uses this model, pushing new, production-ready code every day.
+
+```
+             2.x   2.1.x          3.x
+Release      ------¦-----         -----
+            /       \            /
+Master   --------------------------------
+```
+
+It's very unique in its aspects –
+
+* *Master* is **not** *production*, and instead is the universal development environment.
+* Developers commit to *master* continuously.
+* Each commit is production-ready. Ergo, no commit ever breaks the build.
+* The model utilizes **release engineers**, who have specific rights
+	* Branch off *release* branches, which are then sent to *production*
+	* **Cherry pick** commits from *master*. Useful for bugs.
+* **Multiple productions** can be simultaneously hosted, debugged, and developed on.
 
 ### Keep branches up to date
 
-Realistically, there will likely be ongoing features and a release at work for any repository.
+Realistically, there will likely be ongoing features and a release at work for any repository. Here is a snip of a **gitflow** branch tree.
 
 ```
 Release                        ----
@@ -97,7 +125,7 @@ Develop      -----------------
 Feature           -----        ---- feature-mobile
 ```
 
-In the event that *develop* is updated, such as through a QA commit or *hotfix* merge, its child branches can be updated with `rebase`.
+In the event that *develop* is updated, such as through a QA commit or merge from *hotfix*, its child branches can be updated with `rebase`.
 
 ```
 $ git checkout feature-mobile
@@ -106,7 +134,7 @@ $ git rebase develop
 
 ### Delete a branch
  
-Once finished with a branch (merged into parent), they can be deleted to keep the repository nice and clean.
+Once finished with a branch (merged into parent), they can be deleted to keep the repository nice and clean. This must be done locally and remotely.
 
 ```
 $ git checkout develop
@@ -142,7 +170,7 @@ pick f7f3f6d changed my name a bit
 r 310154e updated README formatting and added blame
 ```
 
-Opens an editor to *reword* the commit message. Useful when accidentally commiting with typos or lackluster language.
+*Reword* the commit message. Useful when accidentally commiting with typos or lackluster language.
 
 ```
 pick 4e64052 Revise animations to use CSS in homepage
@@ -184,7 +212,7 @@ s 9n28e0a Impl. Spanish lanuage support
 >As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.  
 >– *Git Commit Good Practice*, OpenStack
 
-Here is a template that I've conformed to over a few months of commiting:
+#### Template of a good commit message
 
 ```
 [Imperative] [Noun] [Context]
@@ -192,7 +220,7 @@ Here is a template that I've conformed to over a few months of commiting:
 [Expanded context and explanation]
 ```
 
-See an example below.
+This encompasses the best commits messages I find. They are straight & to the point, and give the reader a good idea of what's going on, and what the commit is doing about it.
 
 #### Fixing bugs and closing issues
 
