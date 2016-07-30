@@ -77,53 +77,64 @@ In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versi
 
 The appeal of Github-flow is simple:
 
-- Provide an easy to use branch model for **continuous integration (CI)**.
-- Each developer is working with the same parent branch of code, allowing for easy collaboration between groups of programmers.
-- Much, much less likelihood that any codebase will diverge and cause conflicts.
+* Provide an easy to use branch model for **continuous integration (CI)**.
+* Have each dev work with the same parent branch of code
+    - Enable easy collaboration amongst branches.
+* Much, much less likelihood that any codebase will diverge and cause conflicts.
 
 #### Trunk
 
 Trunk-based development is another model focused on **continuous integration (CI)** that has been around for many years. Facebook uses this model, pushing new, production-ready code every day.
 
 ```
-             2.x   2.1.x          3.x
-Release      ------x-----         -----
-            /       \            /
-Master   --------------------------------
+             2.x   2.1.x            3.x
+Release      --------x-----         -------
+            /                      /
+Master   --------------------------------------
 ```
 
-It's very unique in its aspects –
+Trunk is very unique in its aspects –
 
 * *Master* is **not** production, and instead is the universal development environment.
 * Developers exclusively commit to *master*.
 * Each commit is production-ready. Ergo, no commit ever breaks the build.
-* The model utilizes **release engineers**, who have specific rights –
+* The model employs **release engineers**, who have specific rights –
 	* Branch off *release* branches, which are then sent to *production*
 	* **Cherry pick** commits from *master*. Useful for bugs.
 * **Multiple productions** can be simultaneously hosted, debugged, and developed on.
 
+Knowing these three models in mind, you can effectively use what works best for your project and team.
+
 ### Keep branches up to date
 
-Realistically, there will likely be ongoing features and a release at work for any repository. Here is a snip of a **gitflow** tree.
+Realistically, there will be ongoing features and a release at work for any repository.
+
+Say you're working on *feature-mobile*, and *develop* is now updated with a commit from QA and a merge from *hotfix*.
 
 ```
-Release                        ----
-                              /
-Develop      -----------------
-                 \     /      \
-Feature           -----        ---- feature-mobile
+Develop      ------------------x---x
+                 \     /    \
+Feature           -----      ---- feature-mobile
 ```
 
-In the event that *develop* is updated, such as through a QA commit or merge from *hotfix*, its child branches can be updated with `rebase`.
+To update the branch,
 
 ```
 $ git checkout feature-mobile
 $ git rebase develop
 ```
 
+*Feature-mobile* is now at the tip of *develop*.
+
+```
+Develop      ------------------x---x
+                 \     /            \
+Feature           -----              ---- feature-mobile
+```
+
 ### Delete a branch
  
-Once finished with a branch (merged into parent), they can be deleted to keep the repository nice and clean. This must be done locally and remotely.
+Delete unused or recently implemented branches to keep the repository clean. This must be done locally and remotely.
 
 ```
 $ git checkout develop
@@ -132,10 +143,9 @@ $ git push origin --delete feature-mobile
 $ git push
 ```
 
-
 ### Visualize branch flow
 
-Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so it's important that each dev has a visual of the branch flow.
+Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so each dev should have a visual of the branch flow.
 
 ```
 $ git config --global alias.lol log --graph --decorate --oneline -20
@@ -209,7 +219,7 @@ s 9n28e0a Impl. Spanish lanuage support
 [Expanded context and explanation]
 ```
 
-This encompasses the best commits messages I find. They are straight & to the point, and give the reader a good idea of what's going on, and what the commit is doing about it.
+This encompasses the best worded commits. They are straight and to the point, and give the reader a good idea of what's going on, and what the commit is doing about it.
 
 #### Fixing bugs and closing issues
 
