@@ -1,12 +1,6 @@
 # guide 
 A central reference to streamline and homoginize a team's workflow. 
 
-This isn't exhaustive. Be proactive in researching and asking others about proper workflow.
-
-Also, don't expect to know these conventions off the bat. Git is very much an *inductive* language, which means, rather informally, *learn by observing specific scenarios*. Doing this [effectively](https://github.com/airbnb/javascript#objects--no-new) can convey concepts much quicker than teaching it [deductively](https://en.wikipedia.org/wiki/Deductive_reasoning).
-
-To best harden these concepts within your mind, exercise them [prodecurally](https://en.wikipedia.org/wiki/Procedural_knowledge). Hopefully these topic sentences are relevant enough that they become commonplace within your workflow.
-
 * [Useguide](#useguide)
 * [Styleguide](#styleguide)
 
@@ -40,7 +34,7 @@ However, teams can use a variety of models, and it's important to choose the rig
 
 #### Gitflow
 
-While not having an official name, 'gitflow' is the most popular branching model amongst Github developers, while also being the most complicated.
+While not having an official name, 'gitflow' is the most advocated branching model amongst Github developers, while also being the most complicated.
 
 ```
 Hotfix        -----
@@ -55,11 +49,11 @@ Develop      -------------------------
 Feature           -----
 ```
 
-* *Master* hosts the **production** – the code that is currently being used by the end-user.
-* *Release* is a branch off *develop*, which is given final QA, no new features, and is tagged with versioning.
-* *Develop* is a branch off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
-* *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
-* *Hotfix* is a branch off *master*, and can be merged into *master* and *develop*.
+* *Master* hosts the **production** – the code currently being used by the end-user.
+* *Release* branches off *develop*, which is given final QA, no new features, and is tagged with versioning.
+* *Develop* branches off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
+* *Feature* branches off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
+* *Hotfix* branches off *master*, and can be merged into *master* and *develop*.
 
 In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versioning and segregation of code.
 
@@ -89,11 +83,11 @@ The appeal of Github-flow is simple:
 
 #### Trunk
 
-Trunk-based development is another style of **continuous integration (CI)** that has been around for many years. Facebook uses this model, pushing new, production-ready code every day.
+Trunk-based development is another model focused on **continuous integration (CI)** that has been around for many years. Facebook uses this model, pushing new, production-ready code every day.
 
 ```
              2.x   2.1.x          3.x
-Release      ------?-----         -----
+Release      ------x-----         -----
             /       \            /
 Master   --------------------------------
 ```
@@ -110,7 +104,7 @@ It's very unique in its aspects –
 
 ### Keep branches up to date
 
-Realistically, there will likely be ongoing features and a release at work for any repository. Here is a snip of a **gitflow** branch tree.
+Realistically, there will likely be ongoing features and a release at work for any repository. Here is a snip of a **gitflow** tree.
 
 ```
 Release                        ----
