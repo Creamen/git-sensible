@@ -36,12 +36,7 @@ When working in a group, local repos become outdated often, and have to pull dow
 
 Using a branching model will amplify the usefullness of branching, allowing each dev to be more creative with creating code and designing changes without stress.
 
-However, teams can use a variety of models, and it's important to choose the right one for the group. 
-
-*Note* – each model interprets terms (master, release, etc) differently, so know the context. These are universal:
-
-* *Production* is one branch with the currently deployed source code being used by the end-user. Normally, everything funnels into *production* one way or another.
-* *Feature* is a branch that works on a single implementation of a new product feature, such as `Mobile Support` or `Color Themes`.
+However, teams can use a variety of models, and it's important to choose the right one for the group. **Be aware of the three main models – gitflow, github-flow, and trunk – and choose which is most effective for each project.**
 
 #### Gitflow
 
@@ -60,7 +55,7 @@ Develop      -------------------------
 Feature           -----
 ```
 
-* *Production* is *master*.
+* *Master* hosts the **production** – the code that is currently being used by the end-user.
 * *Release* is a branch off *develop*, which is given final QA, no new features, and is tagged with versioning.
 * *Develop* is a branch off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
 * *Feature* is a branch off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
@@ -83,14 +78,14 @@ In comparison to [Github-flow](#Github-flow),  gitflow allows for stricter versi
              feat-mobile
 ```
 
-* *Master* is *production*
+* *Master* hosts production.
 * Any *features*, *hotfixes*, and *releases* branch off *master*.
 
 The appeal of Github-flow is simple:
 
 - Provide an easy to use branch model for **continuous integration (CI)**.
 - Each developer is working with the same parent branch of code, allowing for easy collaboration between groups of programmers.
-- Much, much less likelihood that codebases will diverge and cause conflicts.
+- Much, much less likelihood that any codebase will diverge and cause conflicts.
 
 #### Trunk
 
@@ -98,17 +93,17 @@ Trunk-based development is another style of **continuous integration (CI)** that
 
 ```
              2.x   2.1.x          3.x
-Release      ------¦-----         -----
+Release      ------?-----         -----
             /       \            /
 Master   --------------------------------
 ```
 
 It's very unique in its aspects –
 
-* *Master* is **not** *production*, and instead is the universal development environment.
-* Developers commit to *master* continuously.
+* *Master* is **not** production, and instead is the universal development environment.
+* Developers exclusively commit to *master*.
 * Each commit is production-ready. Ergo, no commit ever breaks the build.
-* The model utilizes **release engineers**, who have specific rights
+* The model utilizes **release engineers**, who have specific rights –
 	* Branch off *release* branches, which are then sent to *production*
 	* **Cherry pick** commits from *master*. Useful for bugs.
 * **Multiple productions** can be simultaneously hosted, debugged, and developed on.
