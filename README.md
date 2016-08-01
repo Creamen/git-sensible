@@ -65,11 +65,11 @@ Develop      -------------------------
 Feature           -----
 ```
 
-- *Master* hosts the **production** – the code currently being used by the end-user.
-- *Release* branches off *develop*, which is given final QA, no new features, and is tagged with versioning.
-- *Develop* branches off *master*, and is where developers work to make changes and improvements to code. QA would most often be done here and in *release*.
-- *Feature* branches off *develop*. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into *develop* once finished.
-- *Hotfix* branches off *master*, and can be merged into *master* and *develop*.
+- `Master` hosts the ``production`` – the code currently being used by the end-user.
+- `Develop` branches off `master`, and is where developers work to make changes and improvements to code. QA would most often be done here and in `release`.
+- `Release` branches off `develop`, which is given final QA, no new features, and is tagged with versioning.
+- `Feature` branches off `develop`. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into `develop` once finished.
+- `Hotfix` branches off `master`, and can be merged into `master` and `develop`.
 
 In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versioning and segregation of code.
 
@@ -88,8 +88,8 @@ In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versi
              feat-mobile
 ```
 
-- *Master* hosts production.
-- Any *features*, *hotfixes*, and *releases* branch off *master*.
+- `Master` hosts production.
+- Any `features`, `hotfixes`, and `releases` branch off `master`.
 
 The appeal of Github-flow is simple:
 
@@ -111,14 +111,14 @@ Master  ----------------------------------------
 
 Trunk is very unique in its aspects –
 
-- *Master* is **not** production, and instead is the universal development environment.
-- *Master* is colloquially known as the 'trunk.'
-- Developers exclusively commit to *master*.
+- `Master` is **not** production, and instead is the universal development environment.
+- `Master` is colloquially known as the 'trunk.'
+- Developers exclusively commit to `master`.
 - Each commit is production-ready. Ergo, no commit ever breaks the build.
 - The model employs **release engineers**, who have specific rights –
-    - Branch off *release* branches, which are then sent to *production*
-    - **Cherry pick** commits from *master*. Useful for bugs.
-- **Multiple productions** can be simultaneously hosted, debugged, and developed on.
+    - Branch off `release` branches, which are then sent to production
+    - Cherry pick commits from `master`. Useful for bugs.
+- **Multiple productions** can be simultaneously hosted and debugged.
 
 Knowing these three models in mind, you can effectively use what works best for your project and team.
 
@@ -132,14 +132,14 @@ Develop  ------------------x---x
 Feature       -----      ---- feature-mobile
 ```
 
-To update *feature-mobile*,
+To update `feature-mobile`,
 
 ```
 $ git checkout feature-mobile
 $ git rebase develop
 ```
 
-*Feature-mobile* is now at the tip of *develop*.
+`Feature-mobile` is now at the tip of `develop`.
 
 ```
 Develop  ------------------x---x
