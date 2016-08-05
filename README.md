@@ -75,7 +75,7 @@ In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versi
 
 #### Github-flow
 
->If your code is having only one version in production at all times (i.e. web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. Once developer finish a feature or finish a bugfix its immediately promoted to production version.
+>If your code has only one version in production at all times (e.g., web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. When a developer finishes a feature or bugfix it is immediately promoted to production.
 >– Gayan Pathirage via Stack Overflow
 
 ```
@@ -223,7 +223,7 @@ s 9n28e0a Impl. Spanish lanuage support
 
 ### Write good commit messages
 
->As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.  
+>As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.
 >– *Git Commit Good Practice*, OpenStack
 
 #### Template of a good commit message
@@ -250,8 +250,6 @@ Originally, [what was happening]
 Closes #XX
 ```
 
-Issues can be closed directly using a [keyword](https://help.github.com/articles/closing-issues-via-commit-messages/).
-
 Here's a great example:
 
 ```
@@ -275,6 +273,7 @@ processed, it is never again checked for nested classes, etc.
 
 Issue: SPR-8955
 ```
+Issues can be closed directly using a [keyword](https://help.github.com/articles/closing-issues-via-commit-messages/).
 
 #### Keep the subject line under 50 chars, and the body under 80
 This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths for programming.
@@ -283,9 +282,11 @@ For vimmers, you should know that line numbers and status symbols eat up column 
 
 #### Line-break the commit body
 
-Add a line break after your desired amount of columns. This improves legibility of the commit message, as it standardizes the rendering of the commit throughout GitHub and the command line. Just like spaces over tabs. **darts out door*\*
+Add a line break at your column limit. This improves legibility of the commit message, as it standardizes the rendering of the commit throughout GitHub and the command line. Just like spaces over tabs. \**darts out door*\*
 
 #### Use a present tense imperative in the subject line
+
+Commits are commands to change and revise code; they are not historical artifacts. While you *did* do something, the commit *does* something.
 
 Good:
 
@@ -298,6 +299,7 @@ Bad:
 - `Improve UX`
 
 #### Don't blend syntax with English
+
 While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *'Was that regex? Or was that python regex...?'*
 
 Good: `Propagate cc to vim configuration files`
