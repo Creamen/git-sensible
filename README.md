@@ -6,8 +6,8 @@ A central reference to streamline and homoginize a team's workflow.
 	- [Avoid straying from conventions](#avoid-straying-from-conventions)
 	- [Use 'git pull --rebase' when getting up to date](#use-git-pull---rebase-when-getting-up-to-date)
 	- [Understand git branching models](#understand-git-branching-models)
-		- [Github-flow](#github-flow)
 		- [Gitflow](#gitflow)
+		- [Github-flow](#github-flow)
 		- [Trunk](#trunk)
 	- [Keep branches up to date](#keep-branches-up-to-date)
 	- [Delete a branch](#delete-a-branch)
@@ -65,7 +65,7 @@ Develop      -------------------------
 Feature           -----
 ```
 
-- `Master` hosts the ``production`` – the code currently being used by the end-user.
+- `Master` hosts the **production** – the code currently being used by the end-user.
 - `Develop` branches off `master`, and is where developers work to make changes and improvements to code. QA would most often be done here and in `release`.
 - `Release` branches off `develop`, which is given final QA, no new features, and is tagged with versioning.
 - `Feature` branches off `develop`. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into `develop` once finished.
