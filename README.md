@@ -3,6 +3,7 @@
 A central reference to streamline and homoginize a team's workflow. 
 
 - [Useguide](#useguide)
+	- [Properly setup](#properly-setup)
 	- [Avoid straying from conventions](#avoid-straying-from-conventions)
 	- [Use 'git pull --rebase' when getting up to date](#use-git-pull---rebase-when-getting-up-to-date)
 	- [Understand git branching models](#understand-git-branching-models)
@@ -13,7 +14,6 @@ A central reference to streamline and homoginize a team's workflow.
 	- [Delete a branch](#delete-a-branch)
 	- [Visualize branch flow](#visualize-branch-flow)
 	- [Rebase commits for readability](#rebase-commits-for-readability)
-	- [Properly setup](#properly-setup)
 	- [Write good commit messages](#write-good-commit-messages)
 		- [Template of a good commit message](#template-of-a-good-commit-message)
 		- [Fixing bugs and closing issues](#fixing-bugs-and-closing-issues)
@@ -26,11 +26,37 @@ A central reference to streamline and homoginize a team's workflow.
 ## Useguide
 
 Use these conventions to improve your workflow and dev experience.
+
+### Properly set up
+	
+#### Keep git profiles synchronized 
+
+    ```
+    $ git config --global user.name "First Last"
+    $ git config --global user.name "public-email@gmail.com"
+    ```
+
+When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
+
+#### *Should I use my real name?*
+
+The answer will almost always be yes.
+
+If you're concerned about security and privacy, it is much more effective to keep track of all the *other* information about you online – hotels, webforums, and financial sites are most often hacked and contain dubious amounts of personal information. Close old accounts, mitigating the chance that your passwords and payment information may be leaked by a [breach](https://en.wikipedia.org/wiki/List_of_data_breaches). Vigilante.pw estimates 1.8 billion records have been [stolen](https://vigilante.pw/) from data breaches.
+    
+#### Turn on 2-Factor authentication for your emails, including your GitHub account
+
+GitHub's hosted information is very accessible. In the past, many accounts have been compromised through [brute force](https://github.com/blog/1698-weak-passwords-brute-forced) and even [reused passwords](https://github.com/blog/2190-github-security-update-reused-password-attack) that were stolen from other websites *last month*. 2-Factor is an easy way to sleep soundly at night.
+
+#### Never, ever move around authentication keys
+	
+They are *disposable*. Leaving them up to human error can open an opportunity for an attacker to do monumental damage. Keep them close. Recreate them if you have any doubt. 
+
 ### Avoid straying from conventions
 
-Always consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and poor performance.
+Always consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and worse performance.
 
-Synchronizing and conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
+Conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
 
 With that said, conforming to conventions doesn't change what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
 
@@ -88,14 +114,14 @@ In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versi
              feat-mobile
 ```
 
-- `Master` hosts production.
-- Any `features`, `hotfixes`, and `releases` branch off `master`.
+- `Master` hosts production
+- Any `features`, `hotfixes`, and `releases` branch off `master`
 
 The appeal of Github-flow is simple:
 
-- Provide an easy to use branch model for **continuous integration (CI)**.
-- Have each dev work with the same parent branch of code
-- Much, much less likelihood that any codebase will diverge and cause conflicts.
+- Provide an easy to use branch model for **continuous integration (CI)**
+- Have each dev work with the same parent branch of code, enabling easier branch collaboration
+- Much, much less likelihood that any codebase will diverge and cause conflicts
 - Simplify the codebase behind pull requests
 
 #### Trunk
@@ -116,7 +142,7 @@ Trunk is very unique in its aspects –
 - Developers exclusively commit to `master`.
 - Each commit is production-ready. Ergo, no commit ever breaks the build.
 - The model employs **release engineers**, who have specific rights –
-    - Branch off `release` branches, which are then sent to production
+    - Create `release` branches, which are sent to production
     - Cherry pick commits from `master`. Useful for bugs.
 - **Multiple productions** can be simultaneously hosted and debugged.
 
@@ -202,24 +228,6 @@ s 9n28e0a Impl. Spanish lanuage support
 
 *Be diligent when rebasing content that has already been pushed, as it creates a new commit and hash, obscuring any issue or comment that referenced the old hash.*
 
-### Properly setup a computer
-	
-- Keep git profiles synchronized across your dists
-
-    ```
-    $ git config --global user.name "First Last"
-    $ git config --global user.name "public-email@gmail.com"
-    ```
-    
-    When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
-    
-- Turn on 2-Factor authentication for your emails, including your GitHub account
-
-	GitHub's hosted information is very accessible. In the past, many accounts have been compromised through [brute force](https://github.com/blog/1698-weak-passwords-brute-forced) and even [reused passwords](https://github.com/blog/2190-github-security-update-reused-password-attack) that were stolen from other websites *last month*. 2-Factor is an easy way to sleep soundly at night.
-
-- Never, ever move around your authentication keys
-	
-	They are *disposable*. Leaving them up to human error can open an opportunity for an attacker to do monumental damage. Keep them close. Recreate them if you have any doubt. 
 
 ### Write good commit messages
 
@@ -278,7 +286,7 @@ Issues can be closed directly using a [keyword](https://help.github.com/articles
 #### Keep the subject line under 50 chars, and the body under 80
 This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths for programming.
 
-For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=80` to colorize the 80th column in the document, and `set columns` a bit wider. I use 86. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
+For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=72` to colorize the 80th column in the document, and `set columns` a bit wider. I use 80. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
 
 #### Line-break the commit body
 
@@ -286,7 +294,7 @@ Add a line break at your column limit. This improves legibility of the commit me
 
 #### Use a present tense imperative in the subject line
 
-Commits are commands to change and revise code; they are not historical artifacts. While you *did* do something, the commit *does* something.
+Commits are commands to change and revise code; they are not historical artifacts. While you *did* something, the commit *does* something.
 
 Good:
 
