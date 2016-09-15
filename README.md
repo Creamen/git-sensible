@@ -15,12 +15,12 @@ A central reference to streamline and homoginize a team's workflow.
 	- [Visualize branch flow](#visualize-branch-flow)
 	- [Rebase commits for readability](#rebase-commits-for-readability)
 	- [Write good commit messages](#write-good-commit-messages)
-		- [Template of a good commit message](#template-of-a-good-commit-message)
-		- [Fixing bugs and closing issues](#fixing-bugs-and-closing-issues)
 		- [Keep the subject line under 50 chars, and the body under 80](#keep-the-subject-line-under-50-chars-and-the-body-under-80)
 		- [Line-break the commit body](#line-break-the-commit-body)
 		- [Use a present tense imperative in the subject line](#use-a-present-tense-imperative-in-the-subject-line)
 		- [Don't blend syntax with English](#dont-blend-syntax-with-english)
+		- [Template of a good commit message](#template-of-a-good-commit-message)
+		- [Fixing bugs and closing issues](#fixing-bugs-and-closing-issues)
 - [Styleguide](#styleguide)
 
 ## Useguide
@@ -218,7 +218,7 @@ Rebasing is a fantastic tool enabling devs to make repo histories more readable 
 $ git rebase -i HEAD~2
 ``` 
 
-Opens an editor to *interactively* work with the `HEAD` and its parent.
+Opens an editor to *interactively* work with the `HEAD` and its parent. Here are a few examples.
 
 ```
 pick f7f3f6d changed my name a bit
@@ -239,15 +239,49 @@ pick 6h49f6s Impl. French language support
 s 9n28e0a Impl. Spanish lanuage support
 ```
 
-*Squash* the commit into its parent, improving the readability of the commit history. Subsequently opens an editor to modify their commit messages, which have also been combined.
+*Squash* the commit into its parent. Subsequently opens an editor to modify their commit messages, which have also been combined.
 
 *Be diligent when rebasing content that has already been pushed, as it creates a new commit and hash, obscuring any issue or comment that referenced the old hash.*
-
 
 ### Write good commit messages
 
 >As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.
 >– *Git Commit Good Practice*, OpenStack
+
+Let's cover the semantics first.
+
+#### Keep the subject line under 50 chars, and the body under 80
+
+This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths for programming.
+
+For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=80` to colorize the 80th column in the document, and `set columns` a bit wider. I use 86. To change `cc` color, add `highlight ColorColumn guibg=blabla` in your vimrc. I use grey19.
+
+#### Line-break the commit body
+
+Add a line break at your column limit. This improves legibility of the commit message, as it standardizes the rendering of the commit throughout GitHub and the command line. Just like spaces over tabs. \**darts out door*\*
+
+#### Use a present tense imperative in the subject line
+
+Commits are commands to change and revise code; they are not historical artifacts. While you *did* something, the commit *does* something.
+
+Good:
+
+- `Implement homepage link in top left corner of all sites`
+
+Bad:
+
+- `Implemented homepage link in corner`
+- `Websites now link to homepage in top left corners`
+- `Improve UX`
+- `haaaands`
+
+#### Don't blend syntax with English
+
+While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *'Was that regex? Or was that python regex...?'*
+
+Good: `Propagate cc to vim configuration files`
+
+Bad: `Propagate cc to [_.]vimrc`
 
 #### Template of a good commit message
 
@@ -296,38 +330,6 @@ processed, it is never again checked for nested classes, etc.
 
 Issue: SPR-8955
 ```
-Issues can be closed directly using a [keyword](https://help.github.com/articles/closing-issues-via-commit-messages/).
-
-#### Keep the subject line under 50 chars, and the body under 80
-This keeps any logs (shortlog, --oneline) within one line. For reference, 66 columns is considered the most legible for reading. 72 and 80 are popular column widths for programming.
-
-For vimmers, you should know that line numbers and status symbols eat up column space, so it's a good idea to use `set cc=72` to colorize the 80th column in the document, and `set columns` a bit wider. I use 80. To change `cc` color, use `highlight ColorColumn guibg=color`. I use grey19.
-
-#### Line-break the commit body
-
-Add a line break at your column limit. This improves legibility of the commit message, as it standardizes the rendering of the commit throughout GitHub and the command line. Just like spaces over tabs. \**darts out door*\*
-
-#### Use a present tense imperative in the subject line
-
-Commits are commands to change and revise code; they are not historical artifacts. While you *did* something, the commit *does* something.
-
-Good:
-
-- `Implement homepage link in top left corner of all sites`
-
-Bad:
-
-- `Implemented homepage link in corner`
-- `Websites now link to homepage in top left corners`
-- `Improve UX`
-
-#### Don't blend syntax with English
-
-While useful at conveying information in a shorter amount of characters, this causes the reader to switch gears too often, thinking *'Was that regex? Or was that python regex...?'*
-
-Good: `Propagate cc to vim configuration files`
-
-Bad: `Propagate cc to [_.]vimrc`
 
 ## Styleguide
 
