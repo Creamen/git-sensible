@@ -33,7 +33,7 @@ Use these conventions to improve your workflow and dev experience.
 
 ```
 $ git config --global user.name "First Last"
-$ git config --global user.name "public-email@gmail.com"
+$ git config --global user.email "public-email@gmail.com"
 ```
 
 When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
