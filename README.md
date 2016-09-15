@@ -31,10 +31,10 @@ Use these conventions to improve your workflow and dev experience.
 	
 #### Keep git profiles synchronized 
 
-    ```
-    $ git config --global user.name "First Last"
-    $ git config --global user.name "public-email@gmail.com"
-    ```
+```
+$ git config --global user.name "First Last"
+$ git config --global user.name "public-email@gmail.com"
+```
 
 When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
 
@@ -48,7 +48,7 @@ If you're concerned about security and privacy, it is much more effective to kee
 
 GitHub's hosted information is very accessible. In the past, many accounts have been compromised through [brute force](https://github.com/blog/1698-weak-passwords-brute-forced) and even [reused passwords](https://github.com/blog/2190-github-security-update-reused-password-attack) that were stolen from other websites *last month*. 2-Factor is an easy way to sleep soundly at night.
 
-#### Never, ever move around authentication keys
+#### Never, ever move around private keys
 	
 They are *disposable*. Leaving them up to human error can open an opportunity for an attacker to do monumental damage. Keep them close. Recreate them if you have any doubt. 
 
@@ -62,8 +62,23 @@ With that said, conforming to conventions doesn't change what is most *effective
 
 ### Use 'git pull --rebase' when getting up to date
 
-```git
+```
 $ git pull --rebase
+```
+
+Get into the habit of using --rebase as a flag when pulling down updates, as to avoid the dreaded
+
+```
+6ea5d9d Merge branch 'master' of https://github.com/oftenfeis/asonimple
+a755762 Merge branch 'master' of https://github.com/oftenfeis/asonimple
+eaaec58 Merge branch 'master' of https://github.com/oftenfeis/asonimple
+```
+
+Additionally, set rebasing as a default in .gitconfig with
+
+```git
+[branch]
+    autosetuprebase = always
 ```
 
 When working in a group, local repos become outdated often, and have to pull down changes made by other devs. `git pull` is made just for this, but by default **causes an extra merge commit just to update the local repo.** This isn't pretty, and gets even nastier with dozens of devs. Use `git pull --rebase` to cleanly update the repo with what's going on.
