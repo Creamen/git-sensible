@@ -54,7 +54,7 @@ They are *disposable*. Leaving them up to human error can open an opportunity fo
 
 ### Avoid straying from conventions
 
-Always consider how other developers and programmers will view their code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and worse performance.
+Always consider how other developers and programmers will view your code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and worse performance.
 
 Conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
 
