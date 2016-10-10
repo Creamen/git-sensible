@@ -1,4 +1,4 @@
-# guide 
+# sensible 
 
 A central reference to streamline and homoginize a team's workflow. 
 
@@ -42,7 +42,7 @@ When done correctly, `blame` and `shortlog` will be attributed to everyone corre
 
 The answer will almost always be yes.
 
-If you're concerned about security and privacy, it is much more effective to keep track of all the *other* information about you online – hotels, webforums, and financial sites are most often hacked and contain dubious amounts of personal information. Close old accounts, mitigating the chance that your passwords and payment information may be leaked by a [breach](https://en.wikipedia.org/wiki/List_of_data_breaches). Vigilante.pw estimates 1.8 billion records have been [stolen](https://vigilante.pw/) from data breaches.
+If you're concerned about security and privacy, it is much more effective to keep track of all the *other* information about you online â€“ hotels, webforums, and financial sites are most often hacked and contain dubious amounts of personal information. Close old accounts, mitigating the chance that your passwords and payment information may be leaked by a [breach](https://en.wikipedia.org/wiki/List_of_data_breaches). Vigilante.pw estimates 1.8 billion records have been [stolen](https://vigilante.pw/) from data breaches.
     
 #### Turn on 2-Factor authentication for your emails, including your GitHub account
 
@@ -54,9 +54,9 @@ They are *disposable*. Leaving them up to human error can open an opportunity fo
 
 ### Avoid straying from conventions
 
-Always consider how other developers and programmers will view your code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and worse performance.
+Always consider how other developers and programmers will view your code and workflow â€“ In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and worse performance.
 
-Conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
+Conforming to conventions is self-fulfilling â€“ as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
 
 With that said, conforming to conventions doesn't change what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
 
@@ -87,7 +87,7 @@ When working in a group, local repos become outdated often, and have to pull dow
 
 Using a branching model will amplify the usefullness of branching, allowing each dev to be more creative with creating code and designing changes without stress.
 
-However, teams can use a variety of models, and it's important to choose the right one for the group. **Be aware of the three main models – gitflow, github-flow, and trunk – and choose which is most effective for each project.**
+However, teams can use a variety of models, and it's important to choose the right one for the group. **Be aware of the three main models â€“ gitflow, github-flow, and trunk â€“ and choose which is most effective for each project.**
 
 #### Gitflow
 
@@ -106,10 +106,10 @@ Develop      -------------------------
 Feature           -----
 ```
 
-- `Master` hosts the **production** – the code currently being used by the end-user.
+- `Master` hosts the **production** â€“ the code currently being used by the end-user.
 - `Develop` branches off `master`, and is where developers work to make changes and improvements to code. QA would most often be done here and in `release`.
 - `Release` branches off `develop`, which is given final QA, no new features, and is tagged with versioning.
-- `Feature` branches off `develop`. There are many features operating simultaneously – some by solo developers, and some by teams. They are merged into `develop` once finished.
+- `Feature` branches off `develop`. There are many features operating simultaneously â€“ some by solo developers, and some by teams. They are merged into `develop` once finished.
 - `Hotfix` branches off `master`, and can be merged into `master` and `develop`.
 
 In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versioning and segregation of code.
@@ -117,7 +117,7 @@ In comparison to [Github-flow](#github-flow),  gitflow allows for stricter versi
 #### Github-flow
 
 >If your code has only one version in production at all times (e.g., web sites, web services, etc) you may use github-flow. Main reason is that you don't need to complex things for the developer. When a developer finishes a feature or bugfix it is immediately promoted to production.
->– Gayan Pathirage via Stack Overflow
+>â€“ Gayan Pathirage via Stack Overflow
 
 ```
                  hotfix-sqli
@@ -150,13 +150,13 @@ Release       --------x-----         -------
 Master  ----------------------------------------
 ```
 
-Trunk is very unique in its aspects –
+Trunk is very unique in its aspects â€“
 
 - `Master` is **not** production, and instead is the universal development environment.
 - `Master` is colloquially known as the 'trunk.'
 - Developers exclusively commit to `master`.
 - Each commit is production-ready. Ergo, no commit ever breaks the build.
-- The model employs **release engineers**, who have specific rights –
+- The model employs **release engineers**, who have specific rights â€“
     - Create `release` branches, which are sent to production
     - Cherry pick commits from `master`. Useful for bugs.
 - **Multiple productions** can be simultaneously hosted and debugged.
@@ -246,7 +246,7 @@ s 9n28e0a Impl. Spanish lanuage support
 ### Write good commit messages
 
 >As a golden rule, the commit message must contain all the information required to fully understand & review the patch for correctness. Less is not more. More is more.
->– *Git Commit Good Practice*, OpenStack
+>â€“ *Git Commit Good Practice*, OpenStack
 
 Let's cover the semantics first.
 
