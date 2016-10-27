@@ -1,3 +1,4 @@
+TODO Oct  27 Add a sensible configuration
 TODO July 29 Nitpicks
              "and streamlined."
              HEAD~2 not HEAD~1
