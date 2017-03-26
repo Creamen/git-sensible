@@ -1,18 +1,15 @@
 # sensible 
 
-A central reference to streamline and homoginize a team's workflow. 
+Learning git isn't intuitive; neither is using it properly. Git-sensible provides a more streamlined git workflow, as well as important pointers on how to use it properly. In a team setting, this useguide can be a great central reference to streamline and homoginize a team's workflow. 
 
 - [Useguide](#useguide)
 	- [Properly setup](#properly-setup)
 	- [Avoid straying from conventions](#avoid-straying-from-conventions)
-	- [Use 'git pull --rebase' when getting up to date](#use-git-pull---rebase-when-getting-up-to-date)
 	- [Understand git branching models](#understand-git-branching-models)
 		- [Gitflow](#gitflow)
 		- [Github-flow](#github-flow)
 		- [Trunk](#trunk)
-	- [Keep branches up to date](#keep-branches-up-to-date)
 	- [Delete a branch](#delete-a-branch)
-	- [Visualize branch flow](#visualize-branch-flow)
 	- [Rebase commits for readability](#rebase-commits-for-readability)
 	- [Write good commit messages](#write-good-commit-messages)
 		- [Keep the subject line under 50 chars, and the body under 80](#keep-the-subject-line-under-50-chars-and-the-body-under-80)
@@ -21,7 +18,31 @@ A central reference to streamline and homoginize a team's workflow.
 		- [Don't blend syntax with English](#dont-blend-syntax-with-english)
 		- [Template of a good commit message](#template-of-a-good-commit-message)
 		- [Fixing bugs and closing issues](#fixing-bugs-and-closing-issues)
-- [Styleguide](#styleguide)
+
+## Sensible gitconfig
+
+Much like vim-sensible's ~/.vimrc, paste this in your ~/.gitconfig to improve git's functionality.
+
+```
+[user]
+    name = First Last
+    email = public-email@gmail.com
+[core]
+    autocrlf = input
+[alias]
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit -20
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all -20
+[push]
+	default = simple
+[branch]
+    autosetuprebase = always
+```
+
+`[user]`: Set and forget. `git blame` and `git shortlog` will be attributed correctly.
+`[core]`: Linux and Windows systems handle line breaks (enter key) differently. Set to `input` on Mac, and `true` on Windows machines.
+`[alias]`: Use `git lol` to quickly visuable the branch flow.
+`[push]`: Simplify git pushing.
+`[branch]`: If you have work in the index, automatically rebase over it when pulling.
 
 ## Useguide
 
@@ -29,15 +50,6 @@ Use these conventions to improve your workflow and dev experience.
 
 ### Properly set up
 	
-#### Keep git profiles synchronized 
-
-```
-$ git config --global user.name "First Last"
-$ git config --global user.email "public-email@gmail.com"
-```
-
-When done correctly, `blame` and `shortlog` will be attributed to everyone correctly.
-
 #### *Should I use my real name?*
 
 The answer will almost always be yes.
@@ -54,34 +66,11 @@ They are *disposable*. Leaving them up to human error can open an opportunity fo
 
 ### Avoid straying from conventions
 
-Always consider how other developers and programmers will view your code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, leading to more fatigue and worse performance.
+Always consider how other developers and programmers will view your code and workflow – In one question, **what will others expect out of your source code and workflow?** If a developer uses strange filetrees, branching models, capitalization, or indentation, other developers will be forced to think harder about their code, rapidly increasing fatigue.
 
 Conforming to conventions is self-fulfilling – as more programmers use conventions workflows become more streamlined and collaboration becomes easier.
 
 With that said, conforming to conventions doesn't change what is most *effective* for programming. That is a different beast entirely, and is the mechanism the drives shifts in conventions. 
-
-### Use 'git pull --rebase' when getting up to date
-
-```
-$ git pull --rebase
-```
-
-Get into the habit of using --rebase as a flag when pulling down updates, as to avoid the dreaded
-
-```
-6ea5d9d Merge branch 'master' of https://github.com/oftenfeis/asonimple
-a755762 Merge branch 'master' of https://github.com/oftenfeis/asonimple
-eaaec58 Merge branch 'master' of https://github.com/oftenfeis/asonimple
-```
-
-Additionally, set rebasing as a default in .gitconfig with
-
-```git
-[branch]
-    autosetuprebase = always
-```
-
-When working in a group, local repos become outdated often, and have to pull down changes made by other devs. `git pull` is made just for this, but by default **causes an extra merge commit just to update the local repo.** This isn't pretty, and gets even nastier with dozens of devs. Use `git pull --rebase` to cleanly update the repo with what's going on.
 
 ### Understand git branching models
 
@@ -163,31 +152,6 @@ Trunk is very unique in its aspects –
 
 Knowing these three models in mind, you can effectively use what works best for your project and team.
 
-### Keep branches up to date
-
-Realistically, there will be ongoing features and a release at work for any repository.
-
-```
-Develop  ------------------x---x
-             \     /    \
-Feature       -----      ---- feature-mobile
-```
-
-To update `feature-mobile`,
-
-```
-$ git checkout feature-mobile
-$ git rebase develop
-```
-
-`Feature-mobile` is now at the tip of `develop`.
-
-```
-Develop  ------------------x---x
-             \     /            \
-Feature       -----              ---- feature-mobile
-```
-
 ### Delete a branch
  
 Delete unused or recently implemented branches to keep the repository clean. This must be done locally and remotely.
@@ -198,17 +162,6 @@ $ git branch -D feature-mobile
 $ git push origin --delete feature-mobile
 $ git push
 ```
-
-### Visualize branch flow
-
-Many teams don't unanimously use a git GUI (although I heard they're pretty cool), so each dev should have a visual of the branch flow. `lol` and `lola` are popular ways to visualize the current branch tree and 'all' branches.
-
-```
-$ git config --global alias.lol log --graph --decorate --oneline -20
-$ git config --global alias.lola log --graph --decorate --oneline --all -20
-```
-
-To modify local aliases, head over to `~/.gitconfig` 
 
 ### Rebase commits for readability
 
@@ -330,7 +283,3 @@ processed, it is never again checked for nested classes, etc.
 
 Issue: SPR-8955
 ```
-
-## Styleguide
-
-As a rule of thumb, prioritize the readability of using code conventions. It is ironic attempting to condense code that will be read by programmers.
